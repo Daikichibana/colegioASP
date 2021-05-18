@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="frmApoderado.aspx" />
     <Content Include="frmEstudiante.aspx" />
+    <Content Include="frmInscripcion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +86,13 @@
     </Compile>
     <Compile Include="frmEstudiante.aspx.designer.cs">
       <DependentUpon>frmEstudiante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmInscripcion.aspx.cs">
+      <DependentUpon>frmInscripcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmInscripcion.aspx.designer.cs">
+      <DependentUpon>frmInscripcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
