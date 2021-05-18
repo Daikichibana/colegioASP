@@ -52,7 +52,7 @@
 
         public DataTable buscar(string nomEst)
         {
-            iniciarSP("buscarInscripcion");
+            iniciarSP("buscarInscripcionNombreEstudiante");
             parametroVarchar(nomEst, "buscar", 30);
             return mostrarData();
         }
