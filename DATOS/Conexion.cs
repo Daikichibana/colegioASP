@@ -15,7 +15,7 @@
         {
             this.servidor = "localhost";
             this.usuario = "root";
-            this.password = "Passw0rd";
+            this.password = "123456789";
             this.basedatos = "dbcolegio";
             this.cmd = new MySqlCommand();
         }

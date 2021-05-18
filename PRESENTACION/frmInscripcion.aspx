@@ -43,6 +43,7 @@
                     <asp:TableRow>
                         <asp:TableCell>Codigo Gestion</asp:TableCell>
                         <asp:TableCell><asp:TextBox ID="txtcocGestion" runat="server"></asp:TextBox></asp:TableCell>
+                        <asp:TableCell><asp:Button ID="btnCurso" runat="server" OnClick="btnBuscarCurso" Text="Buscar Curso" /></asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>Fecha</asp:TableCell>
@@ -58,7 +59,7 @@
                 &nbsp;
                 
                 <asp:Button ID="btnModalApoderado" runat="server" OnClick="Button1_Click" Text="Agregar Apoderado" />
-                
+                <asp:Button ID="btnModalCalificacion" runat="server" OnClick="mostrarCalificaion" Text="Ver Calificacion" />
                
         
                 <br />
@@ -105,10 +106,7 @@
                 </asp:GridView>
  
             </div>
-            <!--       
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <ajaxToolkit:ModalPopupExtender ID="modalApoderado" runat="server" TargetControlID="btnModalApoderado" PopupControlID="mApoderado"></ajaxToolkit:ModalPopupExtender>
-     
+            <!--   
 
             <div id="mApoderado" class="modalPopup">
                  <div id="Header" class="header" >
@@ -133,14 +131,84 @@
                         </Columns>
                     </asp:GridView>
 
-                 </div>
+                 </div><a href="{71B7402C-C5F6-4B38-9BEF-475BA12F1FBD}|NEGOCIO\NEGOCIO.csproj|c:\users\andre\source\repos\colegio\negocio\apoderado.cs">{71B7402C-C5F6-4B38-9BEF-475BA12F1FBD}|NEGOCIO\NEGOCIO.csproj|c:\users\andre\source\repos\colegio\negocio\apoderado.cs</a>
                  <div>
                      <br />
                       <asp:Button id="btnCerrarAp" runat="server" text="Cerrar" OnClick="btnCerrarApModal" />
                  </div>
             </div>
+-->
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <%--Inicio modal buscar curso--%>
+            <asp:Label ID="lblCurso" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="modalCurso" runat="server" TargetControlID="lblCurso" PopupControlID="modalCursoControl" 
+                BackgroundCssClass="modalBackground"></ajaxToolkit:ModalPopupExtender>
+            <div id="modalCursoControl" class="modalPopup">
+                 <div id="Header2" class="header" >
+                     Buscar Curso
+                     <br />
+                     <br />
+                 </div>
+                 <div id="main2" class="main">
+                    <asp:TextBox ID="txtBuscarCurso" runat="server"></asp:TextBox>&nbsp;
+                    <asp:Button ID="bBuscarCurso" runat="server" Text="Buscar" OnClick="btnBuscarCusos"/><br />
+                     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+                    <br />
+                    <br />
+                    <asp:GridView ID="gvCurso" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCurso_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="idCursoGestion" HeaderText="Id"/>
+                            <asp:BoundField DataField="nCurso" HeaderText="Curso"/>
+                            <asp:BoundField DataField="nGestion" HeaderText="Gestion"/>
+                            <asp:BoundField DataField="nParalelo" HeaderText="Paralelo"/>
+                            <asp:CommandField ShowSelectButton="True" HeaderText="Opcion" SelectText="Seleccionar"/>
+                        </Columns>
+                    </asp:GridView>
+                 </div>
+                 <div>
+                     <br />
+                      <asp:Button id="btnCerrarP" runat="server" text="Cerrar" OnClick="btnCerrarCurso" />
+                 </div>
+            </div>
+            <%--Fin modal buscar curso--%> 
 
-                -->  
+            <%--Inicio modal Calificaciones--%>
+            <asp:Label ID="lblCali" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="modalCalificacion" runat="server" TargetControlID="lblCali" PopupControlID="modalCalificacionControl" 
+                BackgroundCssClass="modalBackground"></ajaxToolkit:ModalPopupExtender>
+            <div id="modalCalificacionControl" class="modalPopup">
+                <div id="Header3" class="header" >
+                     Busqueda de Notas
+                     <br />
+                     <br />
+                 </div>
+                <div id="main3" class="main">
+                    <asp:TextBox ID="txtNombreEstudiante" runat="server"></asp:TextBox>&nbsp;
+                    <asp:TextBox ID="txtApellidosEstudiante" runat="server"></asp:TextBox>&nbsp;
+                    <asp:Button ID="btnBuscarCalificacion" runat="server" Text="Buscar Calificacion" OnClick="btnBuscarEstudiante"/><br />
+                     <asp:Label ID="lblErrorCali" runat="server" Text=""></asp:Label>
+                    <br />
+                    <br />
+                    <asp:GridView ID="gvCalificacion" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCalificac<a href="{7E9FEB70-E720-49CD-B749-71FF1A365CEE}|DATOS\DATOS.csproj|c:\users\andre\source\repos\colegio\datos\conexion.cs">{7E9FEB70-E720-49CD-B749-71FF1A365CEE}|DATOS\DATOS.csproj|c:\users\andre\source\repos\colegio\datos\conexion.cs</a>ion_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="nCurso" HeaderText="Curso"/>
+                            <asp:BoundField DataField="nMateria" HeaderText="Materia"/>
+                            <asp:BoundField DataField="nSer" HeaderText="Nota Ser"/>
+                            <asp:BoundField DataField="nSaber" HeaderText="Nota Saber"/>
+                            <asp:BoundField DataField="nHacer" HeaderText="Nota Hacer"/>
+                            <asp:BoundField DataField="nDecidir" HeaderText="Nota Decidir"/>
+                            <asp:BoundField DataField="nPromedio" HeaderText="Nota Total"/>
+                            <asp:BoundField DataField="nGestion" HeaderText="Gestion"/>
+                            <asp:CommandField ShowSelectButton="True" HeaderText="Opcion" SelectText="Seleccionar"/>
+                        </Columns>
+                    </asp:GridView>
+                 </div>
+                <div id="cerrarModalCali">
+                     <br />
+                      <asp:Button id="Button2" runat="server" text="Cerrar" OnClick="btnCerrarCalificacion" />
+                 </div>
+            </div>
+            <%--Fin modal buscar Calificaciones--%> 
         </form>
     </center>
 

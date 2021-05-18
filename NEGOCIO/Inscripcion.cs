@@ -78,5 +78,12 @@
             iniciarSP("selectInscripcion");
             return mostrarData();
         }
+
+        public DataTable buscarCursos(string nCurso)
+        {
+            iniciarSP("buscarCursos");
+            parametroVarchar(nCurso, "buscar", 30);
+            return mostrarData();
+        }
     }
 }
