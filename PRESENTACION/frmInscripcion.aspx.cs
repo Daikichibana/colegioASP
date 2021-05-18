@@ -1,6 +1,7 @@
 ﻿using NEGOCIO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,8 +11,31 @@ namespace PRESENTACION
 {
     public partial class frmInscripcion : System.Web.UI.Page
     {
+        /*  VARIABLES   */
+        DataTable detalleApoderado = new DataTable();
+        DataTable dtb;
 
         /*      METODOS         */
+        public void CargarDetalle()
+        {
+            if (Session["detalleDelApoderado"] == null)
+            {
+                dtb = new DataTable("detalleDelApoderado");
+                dtb.Columns.Add("codigo", System.Type.GetType("System.Int32"));
+                dtb.Columns.Add("nombre", System.Type.GetType("System.String"));
+                dtb.Columns.Add("apellido", System.Type.GetType("System.String"));
+                dtb.Columns.Add("telefono", System.Type.GetType("System.String"));
+                dtb.Columns.Add("direccion", System.Type.GetType("System.String"));
+                dtb.Columns.Add("fechaNacimiento", System.Type.GetType("System.DateTime"));
+
+                Session["detalleDelApoderado"] = dtb;
+                Session["prueba"] = dtb;
+            }
+            else
+            {
+                Session["detalleDelApoderado"] = Session["prueba"];
+            }
+        }
         protected void mostrar()
         {
             Inscripcion insc = new Inscripcion();
@@ -26,11 +50,47 @@ namespace PRESENTACION
             gvApoderadoModal.DataSource = ap.buscar();
             gvApoderadoModal.DataBind();
         }
+
+        private bool existeApoderadoEnDetalle(int idAp)
+        {
+            bool existe = false;
+            foreach (GridViewRow row in gvApoderado.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[0].Text) == idAp)
+                {
+                    existe = true;
+                    break;
+                }
+            }
+            return existe;
+        }
+
+        public void AgregarApoderado(int id_apoderado, string nombre, string apellido, string telefono, string direccion, DateTime fecha)
+        {
+            detalleApoderado = (DataTable) Session["detalleDelApoderado"];
+            DataRow fila = detalleApoderado.NewRow();
+            fila[0] = id_apoderado;
+            fila[1] = nombre;
+            fila[2] = apellido;
+            fila[3] = telefono;
+            fila[4] = direccion;
+            fila[5] = fecha;
+            detalleApoderado.Rows.Add(fila);
+            Session["detalleDelApoderado"] = detalleApoderado;
+            cargarApoderado();
+        }
+
+        public void cargarApoderado()
+        {
+            gvApoderado.DataSource = Session["detalleDelApoderado"];
+            gvApoderado.DataBind();
+        }
         /*  --------------    */
 
         protected void Page_Load(object sender, EventArgs e)
         {
             this.mostrar();
+            this.CargarDetalle();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -38,6 +98,8 @@ namespace PRESENTACION
             txtcocGestion.Text = "";
             txtFec.Text = "";
             txtcodEst.Text = "";
+            Session["detalleDelApoderado"] = null;
+            Session["prueba"] = null;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -46,17 +108,34 @@ namespace PRESENTACION
             insc.CodigoCursoGestion = Convert.ToInt32(txtcocGestion.Text);
             insc.Fecha = Convert.ToDateTime(txtFec.Text);
             insc.CodigoEstudiante = Convert.ToInt32(txtcodEst.Text);
+
+
             if (insc.guardar()) { lblResp.Text = "Inscripcion Guardada..!"; } else { lblResp.Text = "Error al Registrar"; }
+
+
+            detalleInscripcion detInsc = new detalleInscripcion();
+
+            foreach (GridViewRow row in gvApoderado.Rows)
+            {
+                detInsc = new detalleInscripcion();
+                detInsc.IdcodApoderado = Convert.ToInt32(row.Cells[0].Text);
+                detInsc.Relacion = ((TextBox)row.Cells[6].FindControl("txtQty")).Text;
+                string wow = row.Cells[6].Text;
+                detInsc.guardar();
+            }
+
             this.mostrar();
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             Inscripcion insc = new Inscripcion();
+            
             insc.IdInscripcion = Convert.ToInt32(txtIdInscripcion.Text);
             insc.CodigoCursoGestion = Convert.ToInt32(txtcocGestion.Text);
             insc.Fecha = Convert.ToDateTime(txtFec.Text);
             insc.CodigoEstudiante = Convert.ToInt32(txtcodEst.Text);
+
             if (insc.modificar()) { lblResp.Text = "Inscripcion modificada..!"; } else { lblResp.Text = "Error al modificar"; }
             this.mostrar();
         }
@@ -89,21 +168,41 @@ namespace PRESENTACION
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            modalApoderado.Show();
+            gvApoderadoModal.DataBind();
         }
 
         protected void gvCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int codigo = Convert.ToInt32(gvApoderadoModal.SelectedRow.Cells[0].Text);
+            string nombre = gvApoderadoModal.SelectedRow.Cells[1].Text;
+            string apellido = gvApoderadoModal.SelectedRow.Cells[2].Text;
+            string telefono = gvApoderadoModal.SelectedRow.Cells[3].Text;
+            DateTime fecha = Convert.ToDateTime(gvApoderadoModal.SelectedRow.Cells[4].Text);
+            string direccion = gvApoderadoModal.SelectedRow.Cells[5].Text;
+            
 
+            if (existeApoderadoEnDetalle(Convert.ToInt32(codigo)) == true)
+            {
+                lblError.Text = "Ya se encuentra agregado";
+                modalApoderado.Show();
+            }
+            else
+            {
+                AgregarApoderado(codigo, nombre, apellido, telefono, direccion, fecha);
+                modalApoderado.Show();
+            }
         }
 
         protected void btnBuscarApModal(object sender, EventArgs e)
         {
             this.mostrarApoderados();
+            modalApoderado.Show();
         }
 
         protected void btnCerrarApModal(object sender, EventArgs e)
         {
+            modalApoderado.Hide();
 
         }
     }

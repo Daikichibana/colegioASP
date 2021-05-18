@@ -69,9 +69,15 @@
                         <asp:BoundField DataField="nombre" HeaderText="Nombre"/>
                         <asp:BoundField DataField="apellido" HeaderText="Apellido"/>
                         <asp:BoundField DataField="telefono" HeaderText="Telefono"/>  
-                           <asp:BoundField DataField="fechaNacimiento" HeaderText="FechaNacimiento"/> 
-                           <asp:BoundField DataField="direccion" HeaderText="Direccion"/>  
-                         <asp:BoundField DataField="relacion" HeaderText="Relacion"/>
+                        <asp:BoundField DataField="fechaNacimiento" HeaderText="FechaNacimiento"/> 
+                        <asp:BoundField DataField="direccion" HeaderText="Direccion"/>  
+                          <asp:TemplateField HeaderText="Relacion">
+                              <ItemTemplate>
+                                  <asp:TextBox ID="txtQty" runat="server"> 
+                                      
+                                  </asp:TextBox>
+                              </ItemTemplate>
+                          </asp:TemplateField>
                         <asp:CommandField ShowSelectButton="True" HeaderText="Opciones" SelectText="Seleccionar"/>
                     </Columns>
 
@@ -105,9 +111,12 @@
                 </asp:GridView>
  
             </div>
-            <!--       
+ 
+            
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <ajaxToolkit:ModalPopupExtender ID="modalApoderado" runat="server" TargetControlID="btnModalApoderado" PopupControlID="mApoderado"></ajaxToolkit:ModalPopupExtender>
+
+            <asp:Label ID="lblApoderado" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="modalApoderado" runat="server" TargetControlID="lblApoderado" PopupControlID="mApoderado"></ajaxToolkit:ModalPopupExtender>
      
 
             <div id="mApoderado" class="modalPopup">
@@ -120,6 +129,7 @@
                     <asp:TextBox ID="txtBuscarAp" runat="server"></asp:TextBox>&nbsp;
                     <asp:Button ID="btnBuscarAp" runat="server" Text="Buscar por Nombre" OnClick="btnBuscarApModal"/>
                     <br />
+                     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                     <br />
                     <asp:GridView ID="gvApoderadoModal" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCliente_SelectedIndexChanged">
                         <Columns>
@@ -140,7 +150,6 @@
                  </div>
             </div>
 
-                -->  
         </form>
     </center>
 
