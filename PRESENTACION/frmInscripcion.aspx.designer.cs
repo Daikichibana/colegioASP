@@ -168,6 +168,33 @@ namespace PRESENTACION
         protected global::System.Web.UI.WebControls.GridView gvInscripcion;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// lblApoderado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApoderado;
+
+        /// <summary>
+        /// modalApoderado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender modalApoderado;
+
+        /// <summary>
         /// txtBuscarAp control.
         /// </summary>
         /// <remarks>
@@ -186,6 +213,15 @@ namespace PRESENTACION
         protected global::System.Web.UI.WebControls.Button btnBuscarAp;
 
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
         /// gvApoderadoModal control.
         /// </summary>
         /// <remarks>
@@ -195,22 +231,13 @@ namespace PRESENTACION
         protected global::System.Web.UI.WebControls.GridView gvApoderadoModal;
 
         /// <summary>
-        /// btnCerrarAp control.
+        /// btnCerrarP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarAp;
-
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Button btnCerrarP;
 
         /// <summary>
         /// lblCurso control.
@@ -249,13 +276,13 @@ namespace PRESENTACION
         protected global::System.Web.UI.WebControls.Button bBuscarCurso;
 
         /// <summary>
-        /// lblError control.
+        /// lblErrorCurso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Label lblErrorCurso;
 
         /// <summary>
         /// gvCurso control.
@@ -267,13 +294,13 @@ namespace PRESENTACION
         protected global::System.Web.UI.WebControls.GridView gvCurso;
 
         /// <summary>
-        /// btnCerrarP control.
+        /// bCerrarCurso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarP;
+        protected global::System.Web.UI.WebControls.Button bCerrarCurso;
 
         /// <summary>
         /// lblCali control.
@@ -328,6 +355,15 @@ namespace PRESENTACION
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorCali;
+
+        /// <summary>
+        /// gvCalificacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCalificacion;
 
         /// <summary>
         /// Button2 control.

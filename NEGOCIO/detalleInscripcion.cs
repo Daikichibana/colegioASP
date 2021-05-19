@@ -39,8 +39,7 @@
         ///Metodos CRUD
         public bool guardar()
         {
-            iniciarSP("guardarEstudiante");
-            parametroInt(codInscripcion,"codInsc");
+            iniciarSP("guardarDetalleInscripcion");
             parametroInt(codApoderado,"codAp");
             parametroVarchar(relacion, "rel", 30);
             if (ejecutarSP() == true) { return true; } else { return false; }

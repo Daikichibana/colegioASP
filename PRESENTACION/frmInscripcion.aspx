@@ -70,9 +70,15 @@
                         <asp:BoundField DataField="nombre" HeaderText="Nombre"/>
                         <asp:BoundField DataField="apellido" HeaderText="Apellido"/>
                         <asp:BoundField DataField="telefono" HeaderText="Telefono"/>  
-                           <asp:BoundField DataField="fechaNacimiento" HeaderText="FechaNacimiento"/> 
-                           <asp:BoundField DataField="direccion" HeaderText="Direccion"/>  
-                         <asp:BoundField DataField="relacion" HeaderText="Relacion"/>
+                        <asp:BoundField DataField="fechaNacimiento" HeaderText="FechaNacimiento"/> 
+                        <asp:BoundField DataField="direccion" HeaderText="Direccion"/>  
+                          <asp:TemplateField HeaderText="Relacion">
+                              <ItemTemplate>
+                                  <asp:TextBox ID="txtQty" runat="server"> 
+                                      
+                                  </asp:TextBox>
+                              </ItemTemplate>
+                          </asp:TemplateField>
                         <asp:CommandField ShowSelectButton="True" HeaderText="Opciones" SelectText="Seleccionar"/>
                     </Columns>
 
@@ -106,7 +112,13 @@
                 </asp:GridView>
  
             </div>
-            <!--   
+ 
+            
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+            <asp:Label ID="lblApoderado" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="modalApoderado" runat="server" TargetControlID="lblApoderado" PopupControlID="mApoderado"></ajaxToolkit:ModalPopupExtender>
+     
 
             <div id="mApoderado" class="modalPopup">
                  <div id="Header" class="header" >
@@ -118,6 +130,7 @@
                     <asp:TextBox ID="txtBuscarAp" runat="server"></asp:TextBox>&nbsp;
                     <asp:Button ID="btnBuscarAp" runat="server" Text="Buscar por Nombre" OnClick="btnBuscarApModal"/>
                     <br />
+                     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                     <br />
                     <asp:GridView ID="gvApoderadoModal" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCliente_SelectedIndexChanged">
                         <Columns>
@@ -130,15 +143,16 @@
                             <asp:CommandField ShowSelectButton="True" HeaderText="Opcion" SelectText="Seleccionar"/>
                         </Columns>
                     </asp:GridView>
-
-                 </div><a href="{71B7402C-C5F6-4B38-9BEF-475BA12F1FBD}|NEGOCIO\NEGOCIO.csproj|c:\users\andre\source\repos\colegio\negocio\apoderado.cs">{71B7402C-C5F6-4B38-9BEF-475BA12F1FBD}|NEGOCIO\NEGOCIO.csproj|c:\users\andre\source\repos\colegio\negocio\apoderado.cs</a>
-                 <div>
-                     <br />
-                      <asp:Button id="btnCerrarAp" runat="server" text="Cerrar" OnClick="btnCerrarApModal" />
-                 </div>
+                </div>
+                <div>
+                    <div>
+                        <br />
+                        <asp:Button id="btnCerrarP" runat="server" text="Cerrar" OnClick="btnCerrarCurso" />
+                    </div>
+                </div>
             </div>
--->
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+ 
+            
             <%--Inicio modal buscar curso--%>
             <asp:Label ID="lblCurso" runat="server" Text=""></asp:Label>
             <ajaxToolkit:ModalPopupExtender ID="modalCurso" runat="server" TargetControlID="lblCurso" PopupControlID="modalCursoControl" 
@@ -152,7 +166,7 @@
                  <div id="main2" class="main">
                     <asp:TextBox ID="txtBuscarCurso" runat="server"></asp:TextBox>&nbsp;
                     <asp:Button ID="bBuscarCurso" runat="server" Text="Buscar" OnClick="btnBuscarCusos"/><br />
-                     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+                     <asp:Label ID="lblErrorCurso" runat="server" Text=""></asp:Label>
                     <br />
                     <br />
                     <asp:GridView ID="gvCurso" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCurso_SelectedIndexChanged">
@@ -165,11 +179,12 @@
                         </Columns>
                     </asp:GridView>
                  </div>
-                 <div>
+                <div id="cerrarModalCurso">
                      <br />
-                      <asp:Button id="btnCerrarP" runat="server" text="Cerrar" OnClick="btnCerrarCurso" />
-                 </div>
+                      <asp:Button id="bCerrarCurso" runat="server" text="Cerrar" OnClick="btnCerrarCurso" />
+                </div>
             </div>
+                 
             <%--Fin modal buscar curso--%> 
 
             <%--Inicio modal Calificaciones--%>
@@ -189,7 +204,7 @@
                      <asp:Label ID="lblErrorCali" runat="server" Text=""></asp:Label>
                     <br />
                     <br />
-                    <asp:GridView ID="gvCalificacion" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCalificac<a href="{7E9FEB70-E720-49CD-B749-71FF1A365CEE}|DATOS\DATOS.csproj|c:\users\andre\source\repos\colegio\datos\conexion.cs">{7E9FEB70-E720-49CD-B749-71FF1A365CEE}|DATOS\DATOS.csproj|c:\users\andre\source\repos\colegio\datos\conexion.cs</a>ion_SelectedIndexChanged">
+                    <asp:GridView ID="gvCalificacion" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="nCurso" HeaderText="Curso"/>
                             <asp:BoundField DataField="nMateria" HeaderText="Materia"/>
@@ -199,7 +214,7 @@
                             <asp:BoundField DataField="nDecidir" HeaderText="Nota Decidir"/>
                             <asp:BoundField DataField="nPromedio" HeaderText="Nota Total"/>
                             <asp:BoundField DataField="nGestion" HeaderText="Gestion"/>
-                            <asp:CommandField ShowSelectButton="True" HeaderText="Opcion" SelectText="Seleccionar"/>
+                            <asp:BoundField DataField="nBimestre" HeaderText="Bimestre"/>
                         </Columns>
                     </asp:GridView>
                  </div>
