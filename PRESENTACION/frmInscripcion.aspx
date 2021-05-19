@@ -271,7 +271,7 @@
                  </div>
                  <div>
                      <br />
-                      <asp:Button id="Button2" runat="server" text="Cerrar" OnClick="btnCerrarEstModal" />
+                      <asp:Button id="Button3" runat="server" text="Cerrar" OnClick="btnCerrarEstModal" />
                  </div>
             </div>
 

@@ -144,6 +144,10 @@ namespace PRESENTACION
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            detalleInscripcion detIns = new detalleInscripcion();
+            detIns.IdcodInscripcion = Convert.ToInt32(txtIdInscripcion.Text);
+            detIns.eliminar();
+
             Inscripcion insc = new Inscripcion();
             insc.IdInscripcion = Convert.ToInt32(txtIdInscripcion.Text);
             if (insc.eliminar()) { lblResp.Text = "Registro Eliminado..!"; } else { lblResp.Text = "Error al Eliminar"; }
@@ -163,9 +167,9 @@ namespace PRESENTACION
         protected void gvInscripcion_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtIdInscripcion.Text = gvInscripcion.SelectedRow.Cells[0].Text;
-            txtcocGestion.Text = gvInscripcion.SelectedRow.Cells[2].Text;
+            txtcocGestion.Text = gvInscripcion.SelectedRow.Cells[5].Text;
             txtFec.Text = gvInscripcion.SelectedRow.Cells[1].Text;
-            txtcodEst.Text = gvInscripcion.SelectedRow.Cells[5].Text;
+            txtcodEst.Text = gvInscripcion.SelectedRow.Cells[2].Text;
         }
 
         protected void Button1_Click(object sender, EventArgs e)

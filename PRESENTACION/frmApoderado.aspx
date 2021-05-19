@@ -11,6 +11,7 @@
     <center>
         <a href="frmApoderado.aspx">Apoderado</a>&nbsp;
         <a href="frmEstudiante.aspx">Estudiante</a>&nbsp;
+        <a href="frmInscripcion.aspx">Inscripcion</a>&nbsp;
         <h3>GESTION DE APODERADO</h3>
         <form id="form1" runat="server">
             <div>

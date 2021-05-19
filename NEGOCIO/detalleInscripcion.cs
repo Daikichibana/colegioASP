@@ -66,7 +66,7 @@
         public bool eliminar()
         {
             iniciarSP("eliminarDetalleInscripcion");
-            parametroInt(codInscripcion, "codInsc");
+            parametroInt(codInscripcion, "id_insc");
             if (ejecutarSP() == true) { return true; } else { return false; }
         }
 

@@ -43,7 +43,6 @@
         public bool guardar()
         {
             iniciarSP("guardarInscripcion");
-            parametroInt(IdInscripcion, "id:insc");
             parametroFecha(Fecha, "fec");
             parametroInt(CodigoCursoGestion, "codcGestion");
             parametroInt(CodigoEstudiante, "codEst");
@@ -60,7 +59,7 @@
         public bool modificar()
         {
             iniciarSP("modificarInscripcion");
-            parametroInt(IdInscripcion, "id:insc");
+            parametroInt(IdInscripcion, "id_insc");
             parametroFecha(Fecha, "fec");
             parametroInt(CodigoCursoGestion, "codcGestion");
             parametroInt(CodigoEstudiante, "codEst");
