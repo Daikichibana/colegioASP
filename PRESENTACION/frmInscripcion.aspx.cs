@@ -14,6 +14,7 @@ namespace PRESENTACION
         /*  VARIABLES   */
         DataTable detalleApoderado = new DataTable();
         DataTable dtb;
+        Estudiante Estu = new Estudiante();
 
         /*      METODOS         */
         public void CargarDetalle()
@@ -91,6 +92,7 @@ namespace PRESENTACION
         {
             this.mostrar();
             this.CargarDetalle();
+            Session["SeEstudiante"] = new Estudiante();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -204,6 +206,72 @@ namespace PRESENTACION
         {
             modalApoderado.Hide();
 
+        }
+
+        protected void mostrarEstudiante()
+        {
+            Estudiante es = new Estudiante();
+            es.Nombre = txtBuscarAp.Text;
+            gvEstudianteModal.DataSource = es.buscar();
+            gvEstudianteModal.DataBind();
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            modalEstudiante.Show();
+            gvEstudianteModal.DataBind();
+        }
+
+        protected void btnBuscarEstModal(object sender, EventArgs e)
+        {
+            this.mostrarEstudiante();
+            modalEstudiante.Show();
+        }
+        protected void btnCerrarEstModal(object sender, EventArgs e)
+        {
+            modalEstudiante.Hide();
+
+        }
+        
+        public void AgregarEstudiante(int id_estudiante, string nombre, string apellido, string telefono, DateTime fecha, string direccion)
+        {
+            Estu = (Estudiante)Session["SeEstudiante"];
+            Estu.IdEstudiante = id_estudiante;
+            Estu.Nombre = nombre;
+            Estu.Apellido = apellido;
+            Estu.Telefono = telefono;
+            Estu.FechaNacimiento = fecha;
+            Estu.Direccion = direccion;
+
+            Session["SeEstudiante"] = Estu;
+
+            cargarEstudiante();
+
+            /*
+            int codigo = Convert.ToInt32(txtcodEst.Text);
+            string nomEst = txtnomEst.Text;
+            string apeEst = txtapellEst.Text;
+            */
+        }
+        public void cargarEstudiante()
+        {
+            txtcodEst.Text = Convert.ToString(Estu.IdEstudiante);
+            txtnomEst.Text = Estu.Nombre;
+            txtapellEst.Text = Estu.Apellido;
+        }
+        
+        protected void gvCliente2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            int codigo = Convert.ToInt32(gvEstudianteModal.SelectedRow.Cells[0].Text);
+            string nombre = gvEstudianteModal.SelectedRow.Cells[1].Text;
+            string apellido = gvEstudianteModal.SelectedRow.Cells[2].Text;
+            string telefono = gvEstudianteModal.SelectedRow.Cells[3].Text;
+            DateTime fecha = Convert.ToDateTime(gvEstudianteModal.SelectedRow.Cells[4].Text);
+            string direccion = gvEstudianteModal.SelectedRow.Cells[5].Text;
+            
+            AgregarEstudiante(codigo, nombre, apellido, telefono,fecha,direccion);
+            modalEstudiante.Show();
+            
         }
     }
 }

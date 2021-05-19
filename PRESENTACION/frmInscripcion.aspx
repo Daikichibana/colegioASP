@@ -50,13 +50,26 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>Codigo Estudiante</asp:TableCell>
-                        <asp:TableCell><asp:TextBox ID="txtcodEst" runat="server" ></asp:TextBox></asp:TableCell>
+                        <asp:TableCell><asp:TextBox ReadOnly="true" ID="txtcodEst" runat="server" ></asp:TextBox></asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>Nombre Estudiante</asp:TableCell>
+                        <asp:TableCell><asp:TextBox ReadOnly="true" ID="txtnomEst" runat="server" ></asp:TextBox></asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>Apellidos Estudiante</asp:TableCell>
+                        <asp:TableCell><asp:TextBox ReadOnly="true" ID="txtapellEst" runat="server" ></asp:TextBox></asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
                 <br />
 
                 &nbsp;
+                <asp:Button ID="btnModalEstudiante" runat="server" OnClick="Button2_Click" Text="Agregar Estudiante" />
+                <br />
+                <br />
                 
+
+
                 <asp:Button ID="btnModalApoderado" runat="server" OnClick="Button1_Click" Text="Agregar Apoderado" />
                 
                
@@ -78,10 +91,10 @@
                                   </asp:TextBox>
                               </ItemTemplate>
                           </asp:TemplateField>
-                        <asp:CommandField ShowSelectButton="True" HeaderText="Opciones" SelectText="Seleccionar"/>
                     </Columns>
 
                 </asp:GridView>
+                 
                 <br />
                 <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" OnClick="btnNuevo_Click"/>&nbsp;
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click"/>&nbsp;
@@ -147,6 +160,43 @@
                  <div>
                      <br />
                       <asp:Button id="btnCerrarAp" runat="server" text="Cerrar" OnClick="btnCerrarApModal" />
+                 </div>
+            </div>
+
+
+
+            <asp:Label ID="lblEstudiante" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="modalEstudiante" runat="server" TargetControlID="lblEstudiante" PopupControlID="mEstudiante"></ajaxToolkit:ModalPopupExtender>
+     
+
+            <div id="mEstudiante" class="modalPopup">
+                 <div id="HeaderEst" class="header" >
+                     Busqueda de Estudiante
+                     <br />
+                     <br />
+                 </div>
+                 <div id="mainest" class="main">
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>&nbsp;
+                    <asp:Button ID="Button1" runat="server" Text="Buscar por Nombre" OnClick="btnBuscarEstModal"/>
+                    <br />
+                     <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                    <br />
+                    <asp:GridView ID="gvEstudianteModal" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvCliente2_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="codigo" HeaderText="Codigo"/>
+                            <asp:BoundField DataField="nombre" HeaderText="Nombre"/>
+                            <asp:BoundField DataField="apellido" HeaderText="Apellido"/>
+                            <asp:BoundField DataField="telefono" HeaderText="Telefono"/>  
+                            <asp:BoundField DataField="fechaNacimiento" HeaderText="FechaNacimiento"/> 
+                            <asp:BoundField DataField="direccion" HeaderText="Direccion"/>  
+                            <asp:CommandField ShowSelectButton="True" HeaderText="Opcion" SelectText="Seleccionar"/>
+                        </Columns>
+                    </asp:GridView>
+
+                 </div>
+                 <div>
+                     <br />
+                      <asp:Button id="Button2" runat="server" text="Cerrar" OnClick="btnCerrarEstModal" />
                  </div>
             </div>
 
