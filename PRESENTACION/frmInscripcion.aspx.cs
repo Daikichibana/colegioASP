@@ -273,5 +273,47 @@ namespace PRESENTACION
             modalEstudiante.Show();
             
         }
+
+        protected void btnBuscarCurso(object sender, EventArgs e)
+        {
+            modalCurso.Show();
+            gvCurso.DataBind();
+        }
+
+        protected void btnCerrarCurso(object sender, EventArgs e)
+        {
+            modalCurso.Hide();
+        }
+
+        protected void btnBuscarCusos(object sender, EventArgs e)
+        {
+            Inscripcion buscaCurso = new Inscripcion();
+            gvCurso.DataSource=buscaCurso.buscarCursos(txtBuscarCurso.Text);
+            gvCurso.DataBind();
+            modalCurso.Show();
+        }
+
+        protected void gvCurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtcocGestion.Text = gvCurso.SelectedRow.Cells[0].Text;
+        }
+
+        protected void btnCerrarCalificacion(object sender, EventArgs e)
+        {
+            modalCalificacion.Hide();
+        }
+
+        protected void mostrarCalificaion(object sender, EventArgs e)
+        {
+            modalCalificacion.Show();
+        }
+
+        protected void btnBuscarEstudiante(object sender, EventArgs e)
+        {
+            detalleCalificacion detalleCali = new detalleCalificacion();
+            gvCalificacion.DataSource = detalleCali.buscarPorNombreApellidos(txtNombreEstudiante.Text, txtApellidosEstudiante.Text);
+            gvCalificacion.DataBind();
+            modalCalificacion.Show();
+        }
     }
 }
