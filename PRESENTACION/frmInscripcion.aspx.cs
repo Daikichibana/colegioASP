@@ -26,8 +26,9 @@ namespace PRESENTACION
                 dtb.Columns.Add("nombre", System.Type.GetType("System.String"));
                 dtb.Columns.Add("apellido", System.Type.GetType("System.String"));
                 dtb.Columns.Add("telefono", System.Type.GetType("System.String"));
-                dtb.Columns.Add("direccion", System.Type.GetType("System.String"));
                 dtb.Columns.Add("fechaNacimiento", System.Type.GetType("System.DateTime"));
+                dtb.Columns.Add("direccion", System.Type.GetType("System.String"));
+                
 
                 Session["detalleDelApoderado"] = dtb;
                 Session["prueba"] = dtb;
@@ -74,8 +75,9 @@ namespace PRESENTACION
             fila[1] = nombre;
             fila[2] = apellido;
             fila[3] = telefono;
-            fila[4] = direccion;
-            fila[5] = fecha;
+            fila[4] = fecha;
+            fila[5] = direccion;
+            
             detalleApoderado.Rows.Add(fila);
             Session["detalleDelApoderado"] = detalleApoderado;
             cargarApoderado();
@@ -122,7 +124,6 @@ namespace PRESENTACION
                 detInsc = new detalleInscripcion();
                 detInsc.IdcodApoderado = Convert.ToInt32(row.Cells[0].Text);
                 detInsc.Relacion = ((TextBox)row.Cells[6].FindControl("txtQty")).Text;
-                string wow = row.Cells[6].Text;
                 detInsc.guardar();
             }
 
@@ -139,7 +140,21 @@ namespace PRESENTACION
             insc.CodigoEstudiante = Convert.ToInt32(txtcodEst.Text);
 
             if (insc.modificar()) { lblResp.Text = "Inscripcion modificada..!"; } else { lblResp.Text = "Error al modificar"; }
-            this.mostrar();
+            //this.mostrar();
+
+            detalleInscripcion detInsc = new detalleInscripcion();
+            detInsc.IdcodInscripcion = Convert.ToInt32(txtIdInscripcion.Text);
+            detInsc.eliminar();
+
+            detalleInscripcion dv;
+            
+            foreach (GridViewRow row in gvApoderado.Rows)
+            {
+                dv = new detalleInscripcion();
+                dv.IdcodApoderado = Convert.ToInt32(row.Cells[0].Text);
+                dv.Relacion = ((TextBox)row.Cells[6].FindControl("txtQty")).Text;
+                dv.guardar();
+            }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -170,6 +185,15 @@ namespace PRESENTACION
             txtcocGestion.Text = gvInscripcion.SelectedRow.Cells[5].Text;
             txtFec.Text = gvInscripcion.SelectedRow.Cells[1].Text;
             txtcodEst.Text = gvInscripcion.SelectedRow.Cells[2].Text;
+
+            detalleInscripcion detInsc = new detalleInscripcion();
+            DataTable detalle = new DataTable();
+            detInsc.IdcodInscripcion = Convert.ToInt32(txtIdInscripcion.Text);
+            detalle = detInsc.buscar();
+            gvApoderado.DataSource = detalle;
+            gvApoderado.DataBind();
+            Session["prueba"] = detalle;
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
