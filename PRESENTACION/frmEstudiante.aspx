@@ -13,6 +13,7 @@
         <a href="frmApoderado.aspx">Apoderado</a>&nbsp;
         <a href="frmEstudiante.aspx">Estudiante</a>&nbsp;
         <a href="frmInscripcion.aspx">Inscripcion</a>&nbsp;
+        <a href="consultasWS.aspx">Consultas web services</a>&nbsp;
         <h3>GESTION DE ESTUDIANTES</h3>
         <form id="form1" runat="server">
             <div>

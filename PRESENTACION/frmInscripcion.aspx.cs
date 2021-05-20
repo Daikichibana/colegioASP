@@ -317,6 +317,8 @@ namespace PRESENTACION
         {
             Inscripcion buscaCurso = new Inscripcion();
             gvCurso.DataSource=buscaCurso.buscarCursos(txtBuscarCurso.Text);
+
+           
             gvCurso.DataBind();
             modalCurso.Show();
         }

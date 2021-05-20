@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="buscarEstudianteNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarEstudianteNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscarEstudianteNombreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarApoderadoNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarApoderadoNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscarApoderadoNombreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarCursoPorNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarCursoPorNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscarCursoPorNombreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarInscripcionPorNombreEstudiante">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarInscripcionPorNombreEstudianteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscarInscripcionPorNombreEstudianteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarEstudianteNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarEstudianteNombre" />
+  </wsdl:message>
+  <wsdl:message name="buscarEstudianteNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarEstudianteNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscarApoderadoNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarApoderadoNombre" />
+  </wsdl:message>
+  <wsdl:message name="buscarApoderadoNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarApoderadoNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscarCursoPorNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarCursoPorNombre" />
+  </wsdl:message>
+  <wsdl:message name="buscarCursoPorNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarCursoPorNombreResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscarInscripcionPorNombreEstudianteSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarInscripcionPorNombreEstudiante" />
+  </wsdl:message>
+  <wsdl:message name="buscarInscripcionPorNombreEstudianteSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarInscripcionPorNombreEstudianteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsColegioSoap">
+    <wsdl:operation name="buscarEstudianteNombre">
+      <wsdl:input message="tns:buscarEstudianteNombreSoapIn" />
+      <wsdl:output message="tns:buscarEstudianteNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarApoderadoNombre">
+      <wsdl:input message="tns:buscarApoderadoNombreSoapIn" />
+      <wsdl:output message="tns:buscarApoderadoNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarCursoPorNombre">
+      <wsdl:input message="tns:buscarCursoPorNombreSoapIn" />
+      <wsdl:output message="tns:buscarCursoPorNombreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarInscripcionPorNombreEstudiante">
+      <wsdl:input message="tns:buscarInscripcionPorNombreEstudianteSoapIn" />
+      <wsdl:output message="tns:buscarInscripcionPorNombreEstudianteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsColegioSoap" type="tns:wsColegioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="buscarEstudianteNombre">
+      <soap:operation soapAction="http://tempuri.org/buscarEstudianteNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarApoderadoNombre">
+      <soap:operation soapAction="http://tempuri.org/buscarApoderadoNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarCursoPorNombre">
+      <soap:operation soapAction="http://tempuri.org/buscarCursoPorNombre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarInscripcionPorNombreEstudiante">
+      <soap:operation soapAction="http://tempuri.org/buscarInscripcionPorNombreEstudiante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsColegioSoap12" type="tns:wsColegioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="buscarEstudianteNombre">
+      <soap12:operation soapAction="http://tempuri.org/buscarEstudianteNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarApoderadoNombre">
+      <soap12:operation soapAction="http://tempuri.org/buscarApoderadoNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarCursoPorNombre">
+      <soap12:operation soapAction="http://tempuri.org/buscarCursoPorNombre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarInscripcionPorNombreEstudiante">
+      <soap12:operation soapAction="http://tempuri.org/buscarInscripcionPorNombreEstudiante" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsColegio">
+    <wsdl:port name="wsColegioSoap" binding="tns:wsColegioSoap">
+      <soap:address location="https://localhost:44351/wsColegio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsColegioSoap12" binding="tns:wsColegioSoap12">
+      <soap12:address location="https://localhost:44351/wsColegio.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
